@@ -387,17 +387,19 @@ if current_slide["title"] == "Travel":
                   vehicle_type = st.selectbox("Vehicle Type", ["Bus", "Taxi"])
 
                   if vehicle_type == "Bus":                                                        
-                       bus_fuel = st.selectbox("Bus Runs On", ["Electricity", "Diesel", "Hydrogen"])                                                                           bus_emission_factors = {
+                       if vehicle_type == "Bus":                                                        
+                       bus_fuel = st.selectbox("Bus Runs On", ["Electricity", "Diesel", "Hydrogen"])                                                                           
                        bus_emission_factors = {   
-                           "Electricity": 0.03,
-                          "Diesel": 0.09,
-                          "Hydrogen": 0.05
+                         "Electricity": 0.03,
+                         "Diesel": 0.09,
+                         "Hydrogen": 0.05
                        }
                        distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0)
                        if distance > 0:
-                           emission = distance * bus_emission_factors[bus_fuel]
-                           st.session_state["Travel Emission"] = emission                              st.session_state.travel_emissions += emission
-                           st.write(f"Estimated Emissions: {emission:.2f} kg CO₂e")
+                       emission = distance * bus_emission_factors[bus_fuel]
+                       st.session_state["Travel Emission"] = emission
+                       st.session_state.travel_emissions += emission
+                       st.write(f"Estimated Emissions: {emission:.2f} kg CO₂e")
                   elif vehicle_type == "Taxi":
                        taxi_fuel = st.selectbox("Taxi Runs On", ["Electricity", "Petrol", "Hydrogen", "CNG"])
                        taxi_emission_factors = {
