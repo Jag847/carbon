@@ -343,7 +343,7 @@ if current_slide["title"] == "Travel":
                 st.session_state["Travel Emission"] = emission
                 st.session_state.travel_emissions += emission
                 st.write(f"Estimated Emissions: {emission:.2f} kg CO₂e")
-         elif travel_mode == "Railways":
+        elif travel_mode == "Railways":
              rail_type = st.selectbox("Rail Type", ["Metro", "National Railways"])
              if rail_type == "Metro":
                  emission_factor = 0.04
@@ -366,7 +366,7 @@ if current_slide["title"] == "Travel":
                  st.session_state["Travel Emission"] = emission
                  st.session_state.travel_emissions += emission                               
                  st.write(f"Estimated Emissions: {emission:.2f} kg CO₂e")
-         elif travel_mode == "Roadways":
+        elif travel_mode == "Roadways":
               ownership = st.selectbox("Vehicle Ownership", ["Public", "Personal"])
 
               if ownership == "Personal":
@@ -412,8 +412,8 @@ if current_slide["title"] == "Travel":
                            st.session_state.travel_emissions += emission
                            st.write(f"Estimated Emissions: {emission:.2f} kg CO₂e")
                            
-         st.subheader("Total Travel Emission")
-         st.write(f"Your estimated CO₂ emission: **{st.session_state.travel_emissions:.2f} kg CO₂**")
+        st.subheader("Total Travel Emission")
+        st.write(f"Your estimated CO₂ emission: **{st.session_state.travel_emissions:.2f} kg CO₂**")
 
 if current_slide["title"] == "Offset":
     st.header("Carbon Footprint Calculator")
