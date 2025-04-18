@@ -386,8 +386,7 @@ if current_slide["title"] == "Travel":
               elif ownership == "Public":
                   vehicle_type = st.selectbox("Vehicle Type", ["Bus", "Taxi"])
 
-                  if vehicle_type == "Bus":                                                        
-                       if vehicle_type == "Bus":                                                        
+                  if vehicle_type == "Bus":                                                                                                                
                        bus_fuel = st.selectbox("Bus Runs On", ["Electricity", "Diesel", "Hydrogen"])                                                                           
                        bus_emission_factors = {   
                          "Electricity": 0.03,
