@@ -330,14 +330,14 @@ if current_slide["title"] == "Travel":
         st.subheader(" Mode of Transport")
         travel_mode = st.selectbox("", ["Choose Mode of Transport", "Airways", "Roadways", "Railways"],key="transport_mode")
         if travel_mode == "Airways":
-            flight_length = st.selectbox("Flight Length", ["Short Haul", "Long Haul", "Domestic", "International"],key="flight_length")
+            flight_length = st.selectbox("Flight Length", ["Short Haul", "Long Haul", "Domestic", "International"],key="air_flight_length")
             flight_emissions = {
             "Short Haul": 0.15,
             "Long Haul": 0.11,
             "Domestic": 0.18,
             "International": 0.13
             }
-            distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0,key="air_distance")    
+            distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0,key="air_distance_input")    
             if distance > 0:
                 emission = distance * flight_emissions[flight_length]
                 st.session_state["Travel Emission"] = emission
@@ -370,21 +370,21 @@ if current_slide["title"] == "Travel":
               ownership = st.selectbox("Vehicle Ownership", ["Public", "Personal"], key="raod_ownership")
 
               if ownership == "Personal":
-                  vehicle_type = st.selectbox("Vehicle Type", ["Small Sized Car", "Medium Sized Car", "Large Sized Car", "Motorcycle"], key="personal_vehicle_type")
+                  vehicle_type = st.selectbox("Vehicle Type", ["Small Sized Car", "Medium Sized Car", "Large Sized Car", "Motorcycle"], key="road_personal_vehicle_type")
                   personal_emission_factors = {
                      "Small Sized Car": 0.12,
                      "Medium Sized Car": 0.17,
                      "Large Sized Car": 0.22,
                      "Motorcycle": 0.09
                   }
-                  distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0,  key="personal_vehicle_distance")
+                  distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0,  key="road_personal_distance")
                   if distance > 0:
                       emission = distance * personal_emission_factors[vehicle_type]
                       st.session_state["Travel Emission"] = emission                              
                       st.session_state.travel_emissions += emission
                       st.write(f"Estimated Emissions: {emission:.2f} kg CO₂e")
               elif ownership == "Public":
-                  vehicle_type = st.selectbox("Vehicle Type", ["Bus", "Taxi"], key="public_vehicle_type")
+                  vehicle_type = st.selectbox("Vehicle Type", ["Bus", "Taxi"], key="road_public_vehicle_type")
 
                   if vehicle_type == "Bus":                                                                                                                
                        bus_fuel = st.selectbox("Bus Runs On", ["Electricity", "Diesel", "Hydrogen"], key="bus_fuel_type")                                                                           
@@ -393,7 +393,7 @@ if current_slide["title"] == "Travel":
                          "Diesel": 0.09,
                          "Hydrogen": 0.05
                        }
-                       distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0, key="bus_distance")
+                       distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0, key="road_bus_distance")
                        if distance > 0:
                            emission = distance * bus_emission_factors[bus_fuel]
                            st.session_state["Travel Emission"] = emission
@@ -407,7 +407,7 @@ if current_slide["title"] == "Travel":
                           "Hydrogen": 0.07,
                           "CNG": 0.13
                        }
-                       distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0, key="taxi_distance")
+                       distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0, key="road_taxi_distance")
                        if distance > 0:
                            emission = distance * taxi_emission_factors[taxi_fuel]
                            st.session_state["Travel Emission"] = emission
