@@ -125,7 +125,7 @@ if current_slide["title"] == "Fossil Fuels":
         fuel_type1 = st.selectbox("", ["Choose Fuel Type", "CNG", "Petrol/Gasoline", "Diesel", "PNG", "LPG"])
 
         st.subheader("Unit")
-        unit1 = st.selectbox("", ["Choose Unit", "Kg", "Tonne","litre"])
+        unit1 = st.selectbox("", ["Choose Unit", "Kg", "Tonne","litre","SCM"])
 
         st.subheader("Amount Consumed")
         amount_consumed1 = st.number_input("Enter Amount", min_value=1, max_value=10000)
