@@ -315,52 +315,52 @@ if current_slide["title"] == "Travel":
     with col1:
         st.subheader("Facility")
         facility6 = st.selectbox("", ["Choose Facility", "Residential Areas", "Hostels", "Academic Area",
-                                    "Health Centre", "Schools", "Visitor's Hostel", "Servants Quarters", "Shops/Bank/PO"])
+                                    "Health Centre", "Schools", "Visitor's Hostel", "Servants Quarters", "Shops/Bank/PO"],key ="facility_travel")
 
         st.subheader("Year")
-        year6 = st.selectbox("", ["Choose Year", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015"])
+        year6 = st.selectbox("", ["Choose Year", "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015"],key="year_travel")
 
         st.subheader("Month")
         month6 = st.selectbox("", ["Choose Month", "January", "February", "March", "April", "May", "June",
-                                  "July", "August", "September", "October", "November", "December"])
+                                  "July", "August", "September", "October", "November", "December"],key="month_travel")
 
     with col2:
         if "travel_emissions" not in st.session_state:                                  
             st.session_state.travel_emissions = 0.0  
         st.subheader(" Mode of Transport")
-        travel_mode = st.selectbox("", ["Choose Mode of Transport", "Airways", "Roadways", "Railways"])
+        travel_mode = st.selectbox("", ["Choose Mode of Transport", "Airways", "Roadways", "Railways"],key="transport_mode")
         if travel_mode == "Airways":
-            flight_length = st.selectbox("Flight Length", ["Short Haul", "Long Haul", "Domestic", "International"])
+            flight_length = st.selectbox("Flight Length", ["Short Haul", "Long Haul", "Domestic", "International"],key="flight_length")
             flight_emissions = {
             "Short Haul": 0.15,
             "Long Haul": 0.11,
             "Domestic": 0.18,
             "International": 0.13
             }
-            distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0)    
+            distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0,key="air_distance")    
             if distance > 0:
                 emission = distance * flight_emissions[flight_length]
                 st.session_state["Travel Emission"] = emission
                 st.session_state.travel_emissions += emission
                 st.write(f"Estimated Emissions: {emission:.2f} kg CO₂e")
         elif travel_mode == "Railways":
-             rail_type = st.selectbox("Rail Type", ["Metro", "National Railways"])
+             rail_type = st.selectbox("Rail Type", ["Metro", "National Railways"],key="rail_type")
              if rail_type == "Metro":
                  emission_factor = 0.04
-                 distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0)
+                 distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0,key="rail_type")
                  if distance > 0:
                      emission = distance * emission_factor
                      st.session_state["Travel Emission"] = emission
                      st.session_state.travel_emissions += emission
                      st.write(f"Estimated Emissions: {emission:.2f} kg CO₂e")
              elif rail_type == "National Railways":
-                 train_type = st.selectbox("Train Type", ["Electric", "Diesel", "Hydrogen"])
+                 train_type = st.selectbox("Train Type", ["Electric", "Diesel", "Hydrogen"],key="train_type")
                  train_emission_factors = {
                     "Electric": 0.035,
                     "Diesel": 0.06,
                     "Hydrogen": 0.04
              }
-             distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0)
+             distance = st.number_input("Enter distance traveled (km)", min_value=0.0, step=1.0,key="train_distance")
              if distance > 0:
                  emission = distance * train_emission_factors[train_type]                  
                  st.session_state["Travel Emission"] = emission
